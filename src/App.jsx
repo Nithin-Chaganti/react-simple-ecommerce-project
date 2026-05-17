@@ -1,7 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
-import AuthProvider from './context/AuthContext.jsx'
+import AuthProvider from './context/auth-provider.jsx'
 import './App.css'
 import Home from './Pages/Home.jsx'
 import Auth from './Pages/Auth.jsx'
