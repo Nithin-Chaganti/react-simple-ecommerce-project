@@ -1,26 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CartContext from "./cart-context.jsx";
 
 const CART_STORAGE_KEY = 'cartItems'
 
-export default function CartProvider({ children }) {
-    const [cartItems, setCartItems] = useState(() => {
+function readStoredItems() {
+    try {
         const storedCart = localStorage.getItem(CART_STORAGE_KEY)
         return storedCart ? JSON.parse(storedCart) : []
-    })
+    } catch {
+        return []
+    }
+}
+
+export default function CartProvider({ children }) {
+    const [cartItems, setCartItems] = useState(readStoredItems)
     const [toastMessage, setToastMessage] = useState('')
+    const toastTimerRef = useRef(null)
 
     function showToast(message) {
         setToastMessage(message)
-        window.clearTimeout(showToast.timeoutId)
-        showToast.timeoutId = window.setTimeout(() => {
+        window.clearTimeout(toastTimerRef.current)
+        toastTimerRef.current = window.setTimeout(() => {
             setToastMessage('')
         }, 2200)
     }
 
     useEffect(() => {
-        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems))
+        try {
+            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems))
+        } catch {
+            // Ignore storage failures so cart interactions still work in memory.
+        }
     }, [cartItems])
+
+    useEffect(() => () => window.clearTimeout(toastTimerRef.current), [])
 
     function addToCart(product) {
         setCartItems((currentItems) => {

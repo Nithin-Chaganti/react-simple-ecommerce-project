@@ -1,20 +1,29 @@
-import  { useContext, useState } from 'react'
-import {useForm} from 'react-hook-form'
+import { useContext, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useLocation, useNavigate } from 'react-router-dom'
 import AuthContext from '../context/auth-context.jsx'
 
 
 const Auth = () => {
   const location = useLocation()
-  const [mode,setMode] = useState(location.state?.mode || 'signup')
+  const [mode, setMode] = useState(location.state?.mode || 'signup')
   const navigate = useNavigate()
-  const { register, handleSubmit,formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
   const { signUp, login } = useContext(AuthContext)
 
+  useEffect(() => {
+    if (location.state?.mode) {
+      setMode(location.state.mode)
+    }
+  }, [location.state?.mode])
+
   const onSubmit = (data) => {
+    const email = data.email.trim().toLowerCase()
+    const password = data.password
+
     const result = mode === 'signup'
-      ? signUp(data.email, data.password)
-      : login(data.email, data.password)
+      ? signUp(email, password)
+      : login(email, password)
 
     alert(result.message)
 
@@ -34,12 +43,27 @@ const Auth = () => {
           <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
               <label className="form-label" htmlFor="email">Email</label>
-              <input  className="form-input" type="email" id="email" {...register('email', { required: "Email is required" })} />
+              <input
+                className="form-input"
+                type="email"
+                id="email"
+                autoComplete="email"
+                {...register('email', { required: 'Email is required' })}
+              />
             </div>
             {errors.email && <p className="error-message">{errors.email.message}</p>}
             <div className="form-group">
               <label className="form-label" htmlFor="password">Password</label>
-              <input className="form-input" type="password" id="password" {...register('password', { required: "Password is required", minLength: { value: 8, message: "Password must be at least 8 characters", } })} />
+              <input
+                className="form-input"
+                type="password"
+                id="password"
+                autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: { value: 8, message: 'Password must be at least 8 characters' },
+                })}
+              />
             </div>
             {errors.password && <p className="error-message">{errors.password.message}</p>}
             <button
@@ -52,13 +76,13 @@ const Auth = () => {
           <div className="auth-switch">
           <p>
             {mode === 'signup' ? 'Already have an account?' : 'Don\'t have an account?'}{' '}
-            <span
-              
+            <button
+              type="button"
               className="auth-link auth-toggle-btn"
               onClick={() => setMode(mode === 'signup' ? 'login' : 'signup')}
             >
               {mode === 'signup' ? 'Log in' : 'Sign up'}
-            </span>
+            </button>
           </p>
           </div>
         </div>

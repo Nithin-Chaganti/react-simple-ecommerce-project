@@ -9,6 +9,7 @@ import Auth from './Pages/Auth.jsx'
 import Checkout from './Pages/Checkout.jsx'
 import Navbar from './Components/Navbar.jsx'
 import ProductDetails from './Pages/ProductDetails.jsx'
+import NotFound from './Pages/NotFound.jsx'
 
 function App() {
   const location = useLocation()
@@ -18,12 +19,14 @@ function App() {
       <CartProvider>
         <div className="app">
           <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/auth' element={<Auth key={location.key} />} />
-          <Route path='/checkout' element={<Checkout />} />
-          <Route path='/products/:id' element={<ProductDetails />} />
-        </Routes>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/auth' element={<Auth key={location.key} />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/products/:id' element={<ProductDetails />} />
+            <Route path='/not-found' element={<NotFound />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
         </div>
       </CartProvider>
     </AuthProvider>

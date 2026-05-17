@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useContext } from "react"
 import CartContext from "../context/cart-context.jsx"
 
@@ -20,22 +21,29 @@ const Checkout = () => {
           <div className="order-success">
             <h2 className="order-success-title">Your cart is empty</h2>
             <p className="order-success-message">Add products to your cart to see them here.</p>
+            <Link className="btn btn-primary checkout-empty-cta" to="/">
+              Continue Shopping
+            </Link>
           </div>
         ) : (
           <div className="checkout-container">
             <div className="checkout-items">
               {cartItems.map((item) => (
                 <div className="checkout-item" key={item.id}>
-                  <img className="checkout-item-image" src={item.image} alt={item.name} />
+                  <img className="checkout-item-image" src={item.image} alt={item.name} loading="lazy" />
                   <div className="checkout-item-details">
                     <h2 className="checkout-item-name">{item.name}</h2>
                     <p className="checkout-item-price">${item.price.toFixed(2)} each</p>
                   </div>
                   <div className="checkout-item-controls">
                     <div className="quantity-controls">
-                      <button className="quantity-btn" type="button" onClick={() => decrementQuantity(item.id)}>-</button>
+                      <button className="quantity-btn" type="button" onClick={() => decrementQuantity(item.id)} disabled={item.quantity === 1} aria-label={`Decrease quantity of ${item.name}`}>
+                        -
+                      </button>
                       <span className="quantity-value">{item.quantity}</span>
-                      <button className="quantity-btn" type="button" onClick={() => incrementQuantity(item.id)}>+</button>
+                      <button className="quantity-btn" type="button" onClick={() => incrementQuantity(item.id)} aria-label={`Increase quantity of ${item.name}`}>
+                        +
+                      </button>
                     </div>
                     <p className="checkout-item-total">${(item.price * item.quantity).toFixed(2)}</p>
                     <button className="btn btn-secondary btn-small" type="button" onClick={() => removeFromCart(item.id)}>
