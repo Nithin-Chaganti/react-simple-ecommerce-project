@@ -7,6 +7,7 @@ import Home from './Pages/Home.jsx'
 import Auth from './Pages/Auth.jsx'
 import Checkout from './Pages/Checkout.jsx'
 import Navbar from './Components/Navbar.jsx'
+import ProductDetails from './Pages/ProductDetails.jsx'
 
 function App() {
   const location = useLocation()
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/auth' element={<Auth key={location.key} />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path='/products/:id' element={<ProductDetails />} />
       </Routes>
       </div>
     </AuthProvider>
