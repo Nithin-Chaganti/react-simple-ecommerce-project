@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div className="page">
           <div className='home-hero'>
-            <h1 className="home-title">Welcome to ShopHub</h1>
+            <h1 className="home-title">Welcome to ShopX</h1>
             <p className="home-subtitle">Discover the best products at the best prices</p>
           </div>
           <div className="container">

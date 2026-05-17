@@ -42,10 +42,24 @@ const Auth = () => {
               <input className="form-input" type="password" id="password" {...register('password', { required: "Password is required", minLength: { value: 8, message: "Password must be at least 8 characters", } })} />
             </div>
             {errors.password && <p className="error-message">{errors.password.message}</p>}
-            <button className="btn btn-primary btn-large" type="submit">{mode === 'signup' ? 'Sign up' : 'Log in'}</button>
+            <button
+              className={`btn btn-large auth-submit-btn ${mode === 'signup' ? 'btn-primary auth-signup-btn' : 'btn-secondary auth-login-btn'}`}
+              type="submit"
+            >
+              {mode === 'signup' ? 'Sign up' : 'Log in'}
+            </button>
           </form>
           <div className="auth-switch">
-          <p>{mode === 'signup' ? 'Already have an account?' : 'Don\'t have an account?'} <button className="auth-link" onClick={() => setMode(mode === 'signup' ? 'login' : 'signup')}>{mode === 'signup' ? 'Log in' : 'Sign up'}</button></p>
+          <p>
+            {mode === 'signup' ? 'Already have an account?' : 'Don\'t have an account?'}{' '}
+            <span
+              
+              className="auth-link auth-toggle-btn"
+              onClick={() => setMode(mode === 'signup' ? 'login' : 'signup')}
+            >
+              {mode === 'signup' ? 'Log in' : 'Sign up'}
+            </span>
+          </p>
           </div>
         </div>
       </div>

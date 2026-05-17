@@ -1,76 +1,86 @@
+import headphonesImage from "../assets/headphones.jpg";
+import smartwatchImage from "../assets/smartwatch.webp";
+import laptopStandImage from "../assets/laptop-stand.jpg";
+import mechanicalKeyboardImage from "../assets/mechanical-keyboard.jpg";
+import usbCHubImage from "../assets/usb-c-hub.jpg";
+import wirelessMouseImage from "../assets/wireless-mouse.jpg";
+import monitorStandImage from "../assets/monitor-stand.jpg";
+import webcamImage from "../assets/hd-cam.jpg";
+
 const products = [
   {
     id: 1,
     name: "Wireless Headphones",
     price: 99.99,
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
+    image: headphonesImage,
     description:
       "Premium wireless headphones with noise cancellation and 30-hour battery life. Perfect for music lovers and professionals.",
   },
+
   {
     id: 2,
     name: "Smart Watch",
     price: 249.99,
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
+    image: smartwatchImage,
     description:
-      "Feature-rich smartwatch with fitness tracking, heart rate monitor, and smartphone notifications. Water-resistant design.",
+      "Feature-rich smartwatch with fitness tracking, heart rate monitor, and smartphone notifications.",
   },
+
   {
     id: 3,
     name: "Laptop Stand",
     price: 49.99,
-    image:
-      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=500&fit=crop",
+    image: laptopStandImage,
     description:
-      "Ergonomic aluminum laptop stand that improves posture and workspace organization. Adjustable height and angle.",
+      "Ergonomic aluminum laptop stand that improves posture and workspace organization.",
   },
+
   {
     id: 4,
     name: "Mechanical Keyboard",
     price: 129.99,
-    image:
-      "https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=500&h=500&fit=crop",
+    image: mechanicalKeyboardImage,
     description:
-      "RGB backlit mechanical keyboard with Cherry MX switches. Perfect for gaming and typing enthusiasts.",
+      "RGB backlit mechanical keyboard with tactile switches for gaming and productivity.",
   },
+
   {
     id: 5,
     name: "USB-C Hub",
     price: 39.99,
-    image:
-      "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=500&h=500&fit=crop",
+    image: usbCHubImage,
     description:
-      "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader. Expand your laptop connectivity.",
+      "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader.",
   },
+
   {
     id: 6,
     name: "Wireless Mouse",
     price: 29.99,
-    image:
-      "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=500&fit=crop",
+    image: wirelessMouseImage,
     description:
-      "Ergonomic wireless mouse with precision tracking and long battery life. Comfortable for extended use.",
+      "Ergonomic wireless mouse with precision tracking and long battery life.",
   },
+
   {
     id: 7,
     name: "Monitor Stand",
     price: 79.99,
-    image:
-      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=500&h=500&fit=crop",
+    image: monitorStandImage,
     description:
-      "Dual monitor stand with adjustable height and tilt. Frees up desk space and improves ergonomics.",
+      "Adjustable monitor stand for better posture and desk organization.",
   },
+
   {
     id: 8,
-    name: "Webcam HD",
+    name: "HD Webcam",
     price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=500&fit=crop",
+    image: webcamImage,
     description:
-      "1080p HD webcam with auto-focus and built-in microphone. Ideal for video calls and streaming.",
+      "1080p HD webcam with built-in microphone for meetings and streaming.",
   },
+
+  
 ];
 
 export function getProducts() {
