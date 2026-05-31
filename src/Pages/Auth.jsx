@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useLocation, useNavigate } from 'react-router-dom'
 import AuthContext from '../context/auth-context.jsx'
@@ -10,12 +10,6 @@ const Auth = () => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { signUp, login } = useContext(AuthContext)
-
-  useEffect(() => {
-    if (location.state?.mode) {
-      setMode(location.state.mode)
-    }
-  }, [location.state?.mode])
 
   const onSubmit = (data) => {
     const email = data.email.trim().toLowerCase()
